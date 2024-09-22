@@ -12,7 +12,7 @@ import java.util.*;
 public class BoardDaoImpl implements BoardDao {
     @Autowired
     private SqlSession session;
-    private static String namespace = "com.myportfolio.wㄴeb.dao.BoardMapper.";
+    private static String namespace = "com.myportfolio.web.dao.BoardMapper.";
 
     public int count() throws Exception {
         return session.selectOne(namespace+"count");
