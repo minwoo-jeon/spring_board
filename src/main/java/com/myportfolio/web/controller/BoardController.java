@@ -94,6 +94,35 @@ public class BoardController {
         return "boardList"; // 로그인을 한 상태이면, 게시판 화면으로 이동
     }
 
+    //게시물 작성 페이지 가져오기
+    @GetMapping("/write")
+    public String write(Model m){
+        m.addAttribute("mode" , "new");
+        return "board";
+    }
+
+    //게시글 작성 post
+    @PostMapping("/write")
+    public String write(BoardDto boardDto, HttpSession session,RedirectAttributes rattr,Model m){
+        String id = (String)session.getAttribute("id");
+        boardDto.setWriter(id);
+        try {
+            int cnt = boardService.write(boardDto);
+            if(cnt != 1) {
+                throw new Exception("WRT_ERR");
+            }
+            rattr.addFlashAttribute("msg","WRT_OK");
+            return "redirect:/board/list";
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            m.addAttribute("msg","WRT_ERR");
+            return "board";
+        }
+    }
+
+
+
 
     //로그인 여부확인
     private boolean loginCheck(HttpServletRequest request) {
