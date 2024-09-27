@@ -121,6 +121,28 @@ public class BoardController {
         }
     }
 
+    //게시물 수정
+    @PostMapping("/modify")
+    public String modify(BoardDto boardDto, HttpSession session,RedirectAttributes rattr,Model m, Integer page ,Integer
+            pageSize){
+        String id = (String)session.getAttribute("id");
+        boardDto.setWriter(id);
+        try {
+            int cnt = boardService.modify(boardDto);
+            if(cnt != 1) {
+                throw new Exception("Modify_failed");
+            }
+            rattr.addFlashAttribute("msg","MOD_OK");
+            rattr.addAttribute("page" , page);
+            rattr.addAttribute("pageSize", pageSize);
+            return "redirect:/board/list";
+        } catch (Exception e) {
+            e.printStackTrace();
+            m.addAttribute("msg","MOD_ERR");
+            return "board";
+        }
+    }
+
 
 
 
