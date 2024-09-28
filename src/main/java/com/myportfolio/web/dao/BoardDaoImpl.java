@@ -2,6 +2,7 @@ package com.myportfolio.web.dao;
 
 import com.myportfolio.web.dao.*;
 import com.myportfolio.web.domain.BoardDto;
+import com.myportfolio.web.domain.SearchCondition;
 import org.apache.ibatis.session.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
@@ -59,5 +60,22 @@ public class BoardDaoImpl implements BoardDao {
         return session.update(namespace+"increaseViewCnt", bno);
     } // int update(String statement, Object parameter)
 
+    @Override
+    public int updateCommentCnt(Integer cnt, Integer bno)throws Exception{
+        Map map = new HashMap();
+        map.put("cnt" , cnt);
+        map.put("bno" ,bno);
+        return session.update(namespace+"updateCommentCnt", map);
+    }
 
+
+    @Override
+    public List<BoardDto> searchSelectPage(SearchCondition sc)throws Exception{
+        return session.selectList(namespace+ "searchSelectPage", sc);
+    }
+
+    @Override
+    public int searchResultCnt(SearchCondition sc)throws Exception{
+        return session.selectOne(namespace+ "searchResultCnt" , sc);
+    }
 }

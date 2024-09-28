@@ -19,6 +19,15 @@ public class BoardDaoImplTest {
     @Autowired
     private BoardDao boardDao;
 
+
+    @Test
+    public void insert()throws Exception{
+        for (int i = 1; i <= 250; i++) {
+            BoardDto boardDto =  new BoardDto("test" + i,"test1","asdf");
+            boardDao.insert(boardDto);
+        }
+    }
+
     @Test
     public void countTest() throws Exception {
         boardDao.deleteAll();
