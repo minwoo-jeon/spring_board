@@ -74,7 +74,7 @@ public class BoardController {
 
         try {
             int totalCnt = boardService.getSearchResultCnt(sc);
-            System.out.println(totalCnt);
+//            System.out.println(totalCnt);
             m.addAttribute("totalCnt", totalCnt);
             PageHandler pageHandler = new PageHandler(totalCnt,sc);
 
