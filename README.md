@@ -26,7 +26,8 @@
 - 대댓글 
 
 ## ERD
-![화면 캡처 2024-09-26 025136](https://github.com/user-attachments/assets/65afbbe3-4beb-49b1-b9fe-a609cf8c6631)
+![화면 캡처 2024-09-26 025136](https://github.com/user-attachments/assets/65afbbe3-4beb-49b1-b9fe-a609cf8c6631) <BR>
+
 
 
 
@@ -48,7 +49,8 @@ SUM:                                48            609            196           3
 ```
 
 
-## 프로젝트 구조```
+
+## 프로젝트 구조
 
 ```
 ─src
