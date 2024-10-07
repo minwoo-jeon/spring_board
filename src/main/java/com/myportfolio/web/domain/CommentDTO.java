@@ -2,7 +2,7 @@ package com.myportfolio.web.domain;
 
 import java.util.*;
 
-public class CommentDto {
+public class CommentDTO {
     private Integer cno;
     private Integer bno;
     private Integer pcno;
@@ -11,8 +11,8 @@ public class CommentDto {
     private Date    reg_date;
     private Date    up_date;
 
-    public CommentDto() {}
-    public CommentDto(Integer bno, Integer pcno, String comment, String commenter) {
+    public CommentDTO() {}
+    public CommentDTO(Integer bno, Integer pcno, String comment, String commenter) {
         this.bno = bno;
         this.pcno = pcno;
         this.comment = comment;
@@ -23,7 +23,7 @@ public class CommentDto {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        CommentDto that = (CommentDto) o;
+        CommentDTO that = (CommentDTO) o;
         return Objects.equals(cno, that.cno) && Objects.equals(bno, that.bno) && Objects.equals(pcno, that.pcno) && Objects.equals(comment, that.comment) && Objects.equals(commenter, that.commenter);
     }
 

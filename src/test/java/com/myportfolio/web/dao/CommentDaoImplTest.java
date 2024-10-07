@@ -1,7 +1,7 @@
 package com.myportfolio.web.dao;
 
 
-import com.myportfolio.web.domain.CommentDto;
+import com.myportfolio.web.domain.CommentDTO;
 import org.junit.*;
 import org.junit.runner.*;
 import org.springframework.beans.factory.annotation.*;
@@ -27,7 +27,7 @@ public class CommentDaoImplTest {
     @Test
     public void delete() throws Exception {
         commentDao.deleteAll(1);
-        CommentDto commentDto = new CommentDto(1, 0, "comment", "asdf");
+        CommentDTO commentDto = new CommentDTO(1, 0, "comment", "asdf");
         assertTrue(commentDao.insert(commentDto)==1);
         assertTrue(commentDao.count(1)==1);
     }
@@ -35,11 +35,11 @@ public class CommentDaoImplTest {
     @Test
     public void insert() throws Exception {
         commentDao.deleteAll(1);
-        CommentDto commentDto = new CommentDto(1, 0, "comment", "asdf");
+        CommentDTO commentDto = new CommentDTO(1, 0, "comment", "asdf");
         assertTrue(commentDao.insert(commentDto)==1);
         assertTrue(commentDao.count(1)==1);
 
-        commentDto = new CommentDto(1, 0, "comment", "asdf");
+        commentDto = new CommentDTO(1, 0, "comment", "asdf");
         assertTrue(commentDao.insert(commentDto)==1);
         assertTrue(commentDao.count(1)==2);
     }
@@ -47,14 +47,14 @@ public class CommentDaoImplTest {
     @Test
     public void selectAll() throws Exception {
         commentDao.deleteAll(1);
-        CommentDto commentDto = new CommentDto(1, 0, "comment", "asdf");
+        CommentDTO commentDto = new CommentDTO(1, 0, "comment", "asdf");
         assertTrue(commentDao.insert(commentDto)==1);
         assertTrue(commentDao.count(1)==1);
 
-        List<CommentDto> list = commentDao.selectAll(1);
+        List<CommentDTO> list = commentDao.selectAll(1);
         assertTrue(list.size()==1);
 
-        commentDto = new CommentDto(1, 0, "comment", "asdf");
+        commentDto = new CommentDTO(1, 0, "comment", "asdf");
         assertTrue(commentDao.insert(commentDto)==1);
         assertTrue(commentDao.count(1)==2);
 
@@ -65,11 +65,11 @@ public class CommentDaoImplTest {
     @Test
     public void select() throws Exception {
         commentDao.deleteAll(1);
-        CommentDto commentDto = new CommentDto(1, 0, "comment", "asdf");
+        CommentDTO commentDto = new CommentDTO(1, 0, "comment", "asdf");
         assertTrue(commentDao.insert(commentDto)==1);
         assertTrue(commentDao.count(1)==1);
 
-        List<CommentDto> list = commentDao.selectAll(1);
+        List<CommentDTO> list = commentDao.selectAll(1);
         String comment = list.get(0).getComment();
         String commenter = list.get(0).getCommenter();
         assertTrue(comment.equals(commentDto.getComment()));
@@ -79,11 +79,11 @@ public class CommentDaoImplTest {
     @Test
     public void update() throws Exception {
         commentDao.deleteAll(1);
-        CommentDto commentDto = new CommentDto(1, 0, "comment", "asdf");
+        CommentDTO commentDto = new CommentDTO(1, 0, "comment", "asdf");
         assertTrue(commentDao.insert(commentDto)==1);
         assertTrue(commentDao.count(1)==1);
 
-        List<CommentDto> list = commentDao.selectAll(1);
+        List<CommentDTO> list = commentDao.selectAll(1);
         commentDto.setCno(list.get(0).getCno());
         commentDto.setComment("comment2");
         assertTrue(commentDao.update(commentDto)==1);

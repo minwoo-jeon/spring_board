@@ -1,12 +1,10 @@
 package com.myportfolio.web.controller;
 
 
-import com.myportfolio.web.domain.CommentDto;
+import com.myportfolio.web.domain.CommentDTO;
 import com.myportfolio.web.service.CommentService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
@@ -23,7 +21,7 @@ public class CommentController {
 
     //댓글을 수정하는 메서드
     @PatchMapping("/comments/{cno}")  // web/comments/70 patch
-    public ResponseEntity<String> modify(@PathVariable Integer cno , @RequestBody CommentDto dto, HttpSession session) {
+    public ResponseEntity<String> modify(@PathVariable Integer cno , @RequestBody CommentDTO dto, HttpSession session) {
 //        String commenter = (String)session.getAttribute("id");
         String commenter = "asdf";
         dto.setCommenter(commenter);
@@ -53,7 +51,7 @@ public class CommentController {
 
     //댓글을 저장하는 메서드
     @PostMapping("/comments")  // web/comments?bno=13359 post <-- 삭제할 댓글 번호
-    public ResponseEntity<String> write(@RequestBody CommentDto dto, HttpSession session, Integer bno) {
+    public ResponseEntity<String> write(@RequestBody CommentDTO dto, HttpSession session, Integer bno) {
 //        String commenter = (String)session.getAttribute("id");
         String commenter = "asdf";
         dto.setCommenter(commenter);
@@ -97,14 +95,14 @@ public class CommentController {
 
     //지정된 게시물의 모든 갯글을 가져오는 메서드
     @GetMapping("/comments") //coments?bno=13359 get
-    public ResponseEntity<List<CommentDto>> list(Integer bno) {
-        List<CommentDto> list = null;
+    public ResponseEntity<List<CommentDTO>> list(Integer bno) {
+        List<CommentDTO> list = null;
         try {
             list = commentService.getList(bno);
-            return new ResponseEntity<List<CommentDto>>(list, HttpStatus.OK); //성공시  200
+            return new ResponseEntity<List<CommentDTO>>(list, HttpStatus.OK); //성공시  200
         } catch (Exception e){
             e.printStackTrace();
-            return new ResponseEntity<List<CommentDto>>(HttpStatus.BAD_REQUEST); //실패시 상태코드 400번
+            return new ResponseEntity<List<CommentDTO>>(HttpStatus.BAD_REQUEST); //실패시 상태코드 400번
         }
 
     }

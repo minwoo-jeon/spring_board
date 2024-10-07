@@ -1,12 +1,12 @@
 package com.myportfolio.web.domain;
 
-public class PageHandler {
+public class PageHandlerDTO {
 
 //    int page; //현재 페이지
 //
 //    int pageSize; //한 페이지의 크기
 
-    private SearchCondition sc;
+    private SearchConditionDTO sc;
 
     int totalCnt; //총 게시물 갯수
     int naviSize = 10; //페이지 내비게이션의 크기
@@ -18,16 +18,16 @@ public class PageHandler {
     boolean showNext; //다음 페이지로 이동하는 링크를 보여줄것인지 여부
 
 
-    public PageHandler() {}
+    public PageHandlerDTO() {}
 
-    public PageHandler(int totalCnt , SearchCondition sc) {
+    public PageHandlerDTO(int totalCnt , SearchConditionDTO sc) {
         this.totalCnt = totalCnt;
         this.sc = sc;
         doPaging(totalCnt, sc);
     }
 
 
-    public void doPaging(int totalCnt, SearchCondition sc) {
+    public void doPaging(int totalCnt, SearchConditionDTO sc) {
         this.totalCnt = totalCnt;
 
         totalPage = (int) Math.ceil(totalCnt / (double) sc.getPageSize());
@@ -55,11 +55,11 @@ public class PageHandler {
         this.totalCnt = totalCnt;
     }
 
-    public SearchCondition getSc() {
+    public SearchConditionDTO getSc() {
         return sc;
     }
 
-    public void setSc(SearchCondition sc) {
+    public void setSc(SearchConditionDTO sc) {
         this.sc = sc;
     }
 

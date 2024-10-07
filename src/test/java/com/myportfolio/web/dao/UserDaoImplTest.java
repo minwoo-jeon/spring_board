@@ -1,6 +1,6 @@
 package com.myportfolio.web.dao;
 
-import com.myportfolio.web.domain.User;
+import com.myportfolio.web.domain.UserDTO;
 import org.junit.*;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,14 +31,14 @@ public class UserDaoImplTest {
         userDao.deleteAll();
         assertTrue(userDao.count()==0);
 
-        User user = new User("asdf", "1234", "abc", "aaa@aaa.com", new Date(cal.getTimeInMillis()), "fb", new Date());
+        UserDTO user = new UserDTO("asdf", "1234", "abc", "aaa@aaa.com", new Date(cal.getTimeInMillis()), "fb", new Date());
         assertTrue(userDao.insertUser(user)==1);
         assertTrue(userDao.count()==1);
 
-        User user2 = userDao.selectUser(user.getId());
+        UserDTO user2 = userDao.selectUser(user.getId());
         assertTrue(user.equals(user2));
 
-        User user3 = new User("asdf222", "1234", "abc", "aaa@aaa.com", new Date(cal.getTimeInMillis()), "fb", new Date());
+        UserDTO user3 = new UserDTO("asdf222", "1234", "abc", "aaa@aaa.com", new Date(cal.getTimeInMillis()), "fb", new Date());
         assertTrue(userDao.insertUser(user3)==1);
         assertTrue(userDao.count()==2);
 
@@ -51,11 +51,11 @@ public class UserDaoImplTest {
         userDao.deleteAll();
         assertTrue(userDao.count()==0);
 
-        User user = new User("asdf", "1234", "abc", "aaa@aaa.com", new Date(cal.getTimeInMillis()), "fb", new Date());
+        UserDTO user = new UserDTO("asdf", "1234", "abc", "aaa@aaa.com", new Date(cal.getTimeInMillis()), "fb", new Date());
         assertTrue(userDao.insertUser(user)==1);
         assertTrue(userDao.count()==1);
 
-        User user2 = userDao.selectUser(user.getId());
+        UserDTO user2 = userDao.selectUser(user.getId());
         assertTrue(user.equals(user2));
         assertTrue(userDao.deleteUser(user.getId())==1);
 
@@ -69,10 +69,10 @@ public class UserDaoImplTest {
         userDao.deleteAll();
         assertTrue(userDao.count()==0);
 
-        User user = new User("asdf", "1234", "abc", "aaa@aaa.com", new Date(cal.getTimeInMillis()), "fb", new Date());
+        UserDTO user = new UserDTO("asdf", "1234", "abc", "aaa@aaa.com", new Date(cal.getTimeInMillis()), "fb", new Date());
         assertTrue(userDao.insertUser(user)==1);
 
-        User user2 = userDao.selectUser(user.getId());
+        UserDTO user2 = userDao.selectUser(user.getId());
         assertTrue(user.equals(user2));
 
         user2 = userDao.selectUser("aaaaaaa");
@@ -82,7 +82,7 @@ public class UserDaoImplTest {
     @Test
     public void updateUser() throws Exception {
         userDao.deleteAll();
-        User user = new User("asdf", "1234", "abc", "aaa@aaa.com", new Date(cal.getTimeInMillis()), "fb", new Date());
+        UserDTO user = new UserDTO("asdf", "1234", "abc", "aaa@aaa.com", new Date(cal.getTimeInMillis()), "fb", new Date());
         int rowCnt = userDao.insertUser(user);
         assertTrue(rowCnt==1);
 
@@ -91,7 +91,7 @@ public class UserDaoImplTest {
         rowCnt = userDao.updateUser(user);
         assertTrue(rowCnt==1);
 
-        User user2 = userDao.selectUser(user.getId());
+        UserDTO user2 = userDao.selectUser(user.getId());
         System.out.println("user = " + user);
 
     }

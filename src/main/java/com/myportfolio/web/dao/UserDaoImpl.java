@@ -1,16 +1,13 @@
 package com.myportfolio.web.dao;
 
 
-import com.myportfolio.web.domain.User;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import com.myportfolio.web.domain.UserDTO;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.Date;
 
 @Repository
@@ -39,8 +36,8 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public User selectUser(String id) throws Exception {
-        User user = null;
+    public UserDTO selectUser(String id) throws Exception {
+        UserDTO user = null;
         String sql = "SELECT * FROM user_info WHERE id= ? ";
 
         try (
@@ -53,7 +50,7 @@ public class UserDaoImpl implements UserDao {
 
 
             if (rs.next()) {
-                user = new User();
+                user = new UserDTO();
                 user.setId(rs.getString(1));
                 user.setPwd(rs.getString(2));
                 user.setName(rs.getString(3));
@@ -69,7 +66,7 @@ public class UserDaoImpl implements UserDao {
 
     // 사용자 정보를 user_info테이블에 저장하는 메서드
     @Override
-    public int insertUser(User user) throws Exception {
+    public int insertUser(UserDTO user) throws Exception {
         int rowCnt = 0;
         String sql = "INSERT INTO user_info VALUES (?,?,?,?,?,?, now()) ";
 
@@ -89,7 +86,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public int updateUser(User user) throws Exception {
+    public int updateUser(UserDTO user) throws Exception {
         int rowCnt = 0;
 
         String sql = "UPDATE user_info " +

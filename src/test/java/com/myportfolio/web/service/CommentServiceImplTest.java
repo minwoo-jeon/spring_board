@@ -3,15 +3,13 @@ package com.myportfolio.web.service;
 
 import com.myportfolio.web.dao.BoardDao;
 import com.myportfolio.web.dao.CommentDao;
-import com.myportfolio.web.domain.BoardDto;
-import com.myportfolio.web.domain.CommentDto;
+import com.myportfolio.web.domain.BoardDTO;
+import com.myportfolio.web.domain.CommentDTO;
 import org.junit.*;
 import org.junit.runner.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.test.context.*;
 import org.springframework.test.context.junit4.*;
-
-import java.util.*;
 
 import static org.junit.Assert.*;
 
@@ -29,13 +27,13 @@ public class CommentServiceImplTest {
     public void remove() throws Exception {
         boardDao.deleteAll();
 
-        BoardDto boardDto = new BoardDto("hello", "hello", "asdf");
+        BoardDTO boardDto = new BoardDTO("hello", "hello", "asdf");
         assertTrue(boardDao.insert(boardDto) == 1);
         Integer bno = boardDao.selectAll().get(0).getBno();
         System.out.println("bno = " + bno);
 
         commentDao.deleteAll(bno);
-        CommentDto commentDto = new CommentDto(bno,0,"hi","qwer");
+        CommentDTO commentDto = new CommentDTO(bno,0,"hi","qwer");
 
         assertTrue(boardDao.select(bno).getComment_cnt() == 0);
         assertTrue(commentService.write(commentDto)==1);
@@ -55,13 +53,13 @@ public class CommentServiceImplTest {
     public void write() throws  Exception {
         boardDao.deleteAll();
 
-        BoardDto boardDto = new BoardDto("hello", "hello", "asdf");
+        BoardDTO boardDto = new BoardDTO("hello", "hello", "asdf");
         assertTrue(boardDao.insert(boardDto) == 1);
         Integer bno = boardDao.selectAll().get(0).getBno();
         System.out.println("bno = " + bno);
 
         commentDao.deleteAll(bno);
-        CommentDto commentDto = new CommentDto(bno,0,"hi","qwer");
+        CommentDTO commentDto = new CommentDTO(bno,0,"hi","qwer");
 
         assertTrue(boardDao.select(bno).getComment_cnt() == 0);
         assertTrue(commentService.write(commentDto)==1);

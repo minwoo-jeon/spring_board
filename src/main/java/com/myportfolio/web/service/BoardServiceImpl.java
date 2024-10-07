@@ -2,7 +2,6 @@ package com.myportfolio.web.service;
 
 import com.myportfolio.web.dao.*;
 import com.myportfolio.web.domain.*;
-import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
 
 import java.util.*;
@@ -26,40 +25,40 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public int write(BoardDto boardDto) throws Exception {
+    public int write(BoardDTO boardDto) throws Exception {
         return boardDao.insert(boardDto);
     }
 
     @Override
-    public List<BoardDto> getList() throws Exception {
+    public List<BoardDTO> getList() throws Exception {
         return boardDao.selectAll();
     }
 
     @Override
-    public BoardDto read(Integer bno) throws Exception {
-        BoardDto boardDto = boardDao.select(bno);
+    public BoardDTO read(Integer bno) throws Exception {
+        BoardDTO boardDto = boardDao.select(bno);
         boardDao.increaseViewCnt(bno);
 
         return boardDto;
     }
 
     @Override
-    public List<BoardDto> getPage(Map map) throws Exception {
+    public List<BoardDTO> getPage(Map map) throws Exception {
         return boardDao.selectPage(map);
     }
 
     @Override
-    public int modify(BoardDto boardDto) throws Exception {
+    public int modify(BoardDTO boardDto) throws Exception {
         return boardDao.update(boardDto);
     }
 
     @Override
-    public List<BoardDto> getSearchResultPage(SearchCondition sc)throws Exception{
+    public List<BoardDTO> getSearchResultPage(SearchConditionDTO sc)throws Exception{
         return boardDao.searchSelectPage(sc);
     }
 
     @Override
-    public int getSearchResultCnt(SearchCondition sc)throws Exception{
+    public int getSearchResultCnt(SearchConditionDTO sc)throws Exception{
         return boardDao.searchResultCnt(sc);
     }
 

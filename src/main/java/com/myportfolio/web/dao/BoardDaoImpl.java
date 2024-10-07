@@ -1,10 +1,8 @@
 package com.myportfolio.web.dao;
 
-import com.myportfolio.web.dao.*;
-import com.myportfolio.web.domain.BoardDto;
-import com.myportfolio.web.domain.SearchCondition;
+import com.myportfolio.web.domain.BoardDTO;
+import com.myportfolio.web.domain.SearchConditionDTO;
 import org.apache.ibatis.session.*;
-import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
 
 import java.util.*;
@@ -37,26 +35,26 @@ public class BoardDaoImpl implements BoardDao {
         return session.delete(namespace+"delete", map);
     } // int delete(String statement, Object parameter)
 
-    public int insert(BoardDto dto) throws Exception {
+    public int insert(BoardDTO dto) throws Exception {
         return session.insert(namespace+"insert", dto);
     } // int insert(String statement, Object parameter)
 
     @Override
-    public List<BoardDto> selectAll() throws Exception {
+    public List<BoardDTO> selectAll() throws Exception {
         return session.selectList(namespace+"selectAll");
     } // List<E> selectList(String statement)
 
-    public BoardDto select(Integer bno) throws Exception {
+    public BoardDTO select(Integer bno) throws Exception {
         return session.selectOne(namespace + "select", bno);
     } // T selectOne(String statement, Object parameter)
 
     @Override
-    public List<BoardDto> selectPage(Map map) throws Exception {
+    public List<BoardDTO> selectPage(Map map) throws Exception {
         return session.selectList(namespace+"selectPage", map);
     } // List<E> selectList(String statement, Object parameter)
 
     @Override
-    public int update(BoardDto dto) throws Exception {
+    public int update(BoardDTO dto) throws Exception {
         return session.update(namespace+"update", dto);
     } // int update(String statement, Object parameter)
 
@@ -75,12 +73,12 @@ public class BoardDaoImpl implements BoardDao {
 
 
     @Override
-    public List<BoardDto> searchSelectPage(SearchCondition sc)throws Exception{
+    public List<BoardDTO> searchSelectPage(SearchConditionDTO sc)throws Exception{
         return session.selectList(namespace+ "searchSelectPage", sc);
     }
 
     @Override
-    public int searchResultCnt(SearchCondition sc)throws Exception{
+    public int searchResultCnt(SearchConditionDTO sc)throws Exception{
         return session.selectOne(namespace+ "searchResultCnt" , sc);
     }
 }

@@ -3,7 +3,7 @@ package com.myportfolio.web.service;
 
 import com.myportfolio.web.dao.BoardDao;
 import com.myportfolio.web.dao.CommentDao;
-import com.myportfolio.web.domain.CommentDto;
+import com.myportfolio.web.domain.CommentDTO;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
 import org.springframework.transaction.annotation.*;
@@ -43,7 +43,7 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public int write(CommentDto commentDto) throws Exception {
+    public int write(CommentDTO commentDto) throws Exception {
         int rowCnt =boardDao.updateCommentCnt( 1,commentDto.getBno());
 
 //                throw new Exception("test");
@@ -51,18 +51,18 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public List<CommentDto> getList(Integer bno) throws Exception {
+    public List<CommentDTO> getList(Integer bno) throws Exception {
 //        throw new Exception("test");
         return commentDao.selectAll(bno);
     }
 
     @Override
-    public CommentDto read(Integer cno) throws Exception {
+    public CommentDTO read(Integer cno) throws Exception {
         return commentDao.select(cno);
     }
 
     @Override
-    public int modify(CommentDto commentDto) throws Exception {
+    public int modify(CommentDTO commentDto) throws Exception {
         return commentDao.update(commentDto);
     }
 }

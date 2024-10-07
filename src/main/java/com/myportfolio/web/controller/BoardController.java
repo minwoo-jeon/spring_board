@@ -1,16 +1,13 @@
 package com.myportfolio.web.controller;
 
 import com.myportfolio.web.domain.*;
-import com.myportfolio.web.service.*;
 import com.myportfolio.web.service.BoardService;
-import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
 import org.springframework.ui.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.*;
 
 import javax.servlet.http.*;
-import java.time.*;
 import java.util.*;
 
 @Controller
@@ -26,10 +23,10 @@ public class BoardController {
 
     //게시물 읽기
     @GetMapping("/read")
-    public String read(Integer bno, Model m, SearchCondition sc ){
+    public String read(Integer bno, Model m, SearchConditionDTO sc ){
 
         try {
-            BoardDto boardDto = boardService.read(bno);
+            BoardDTO boardDto = boardService.read(bno);
             m.addAttribute("boardDto", boardDto);
             m.addAttribute("sc",sc);
 
@@ -70,7 +67,7 @@ public class BoardController {
 
 
     @GetMapping("/list")
-    public String list(HttpServletRequest request, SearchCondition sc, Model m){
+    public String list(HttpServletRequest request, SearchConditionDTO sc, Model m){
         if(!loginCheck(request))
             return  "redirect:/login/login?toURL=" + request.getRequestURL();
 
@@ -79,9 +76,9 @@ public class BoardController {
             int totalCnt = boardService.getSearchResultCnt(sc);
 //            System.out.println(totalCnt);
             m.addAttribute("totalCnt", totalCnt);
-            PageHandler pageHandler = new PageHandler(totalCnt,sc);
+            PageHandlerDTO pageHandler = new PageHandlerDTO(totalCnt,sc);
 
-            List<BoardDto> list = boardService.getSearchResultPage(sc);
+            List<BoardDTO> list = boardService.getSearchResultPage(sc);
             m.addAttribute("list" ,list);
             m.addAttribute("ph", pageHandler);
 
@@ -96,7 +93,7 @@ public class BoardController {
 
     //게시물 작성 페이지 가져오기
     @GetMapping("/write")
-    public String write(Model m, SearchCondition sc ){
+    public String write(Model m, SearchConditionDTO sc ){
         m.addAttribute("mode" , "new");
         m.addAttribute("sc",sc);
         return "board";
@@ -104,7 +101,7 @@ public class BoardController {
 
     //게시글 작성 post
     @PostMapping("/write")
-    public String write(BoardDto boardDto, HttpSession session,RedirectAttributes rattr,Model m){
+    public String write(BoardDTO boardDto, HttpSession session, RedirectAttributes rattr, Model m){
         String id = (String)session.getAttribute("id");
         boardDto.setWriter(id);
         try {
@@ -124,7 +121,7 @@ public class BoardController {
 
     //게시물 수정
     @PostMapping("/modify")
-    public String modify(BoardDto boardDto, HttpSession session,RedirectAttributes rattr,Model m, Integer page ,Integer
+    public String modify(BoardDTO boardDto, HttpSession session, RedirectAttributes rattr, Model m, Integer page , Integer
             pageSize){
         String id = (String)session.getAttribute("id");
         boardDto.setWriter(id);

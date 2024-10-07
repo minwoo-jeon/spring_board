@@ -1,12 +1,12 @@
 package com.myportfolio.web.dao;
 
-import com.myportfolio.web.domain.User;
+import com.myportfolio.web.domain.UserDTO;
 
 public interface UserDao {
-    User selectUser(String id) throws Exception;
+    UserDTO selectUser(String id) throws Exception;
     int deleteUser(String id) throws Exception;
-    int insertUser(User user) throws Exception;
-    int updateUser(User user) throws Exception;
+    int insertUser(UserDTO user) throws Exception;
+    int updateUser(UserDTO user) throws Exception;
     int count() throws Exception;
     void deleteAll() throws Exception;
 }

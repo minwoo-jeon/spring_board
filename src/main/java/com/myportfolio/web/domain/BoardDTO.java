@@ -2,7 +2,7 @@ package com.myportfolio.web.domain;
 
 import java.util.*;
 
-public class BoardDto {
+public class BoardDTO {
     private Integer bno;
     private String  title;
     private String  content;
@@ -15,7 +15,7 @@ public class BoardDto {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        BoardDto boardDto = (BoardDto) o;
+        BoardDTO boardDto = (BoardDTO) o;
         return Objects.equals(bno, boardDto.bno) && Objects.equals(title, boardDto.title) && Objects.equals(content, boardDto.content) && Objects.equals(writer, boardDto.writer);
     }
 
@@ -24,8 +24,8 @@ public class BoardDto {
         return Objects.hash(bno, title, content, writer);
     }
 
-    public BoardDto() { this("","",""); }
-    public BoardDto(String title, String content, String writer){
+    public BoardDTO() { this("","",""); }
+    public BoardDTO(String title, String content, String writer){
         this.title = title;
         this.content = content;
         this.writer = writer;

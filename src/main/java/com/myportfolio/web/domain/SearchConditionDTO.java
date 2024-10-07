@@ -2,7 +2,7 @@ package com.myportfolio.web.domain;
 
 import org.springframework.web.util.UriComponentsBuilder;
 
-public class SearchCondition {
+public class SearchConditionDTO {
     private Integer page=1;
     private Integer pageSize=10;
     //    private  Integer offset=0;
@@ -10,11 +10,11 @@ public class SearchCondition {
     private String option = "";
 
 
-    public SearchCondition(){
+    public SearchConditionDTO(){
 
     }
 
-    public SearchCondition(Integer page, Integer pageSize, String keyword, String option) {
+    public SearchConditionDTO(Integer page, Integer pageSize, String keyword, String option) {
         this.page = page;
         this.pageSize = pageSize;
         this.keyword = keyword;
