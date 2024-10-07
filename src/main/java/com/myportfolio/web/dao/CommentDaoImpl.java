@@ -10,9 +10,14 @@ import java.util.*;
 
 @Repository
 public class CommentDaoImpl implements CommentDao {
-    @Autowired
-    private SqlSession session;
+
+    private final SqlSession session;
     private static String namespace = "com.myportfolio.web.dao.CommentMapper.";
+
+    public CommentDaoImpl(SqlSession session){
+        this.session = session;
+    }
+
 
     @Override
     public int count(Integer bno) throws Exception {

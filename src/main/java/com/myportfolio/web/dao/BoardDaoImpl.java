@@ -11,9 +11,14 @@ import java.util.*;
 
 @Repository
 public class BoardDaoImpl implements BoardDao {
-    @Autowired
-    private SqlSession session;
+
+    private final SqlSession session;
     private static String namespace = "com.myportfolio.web.dao.BoardMapper.";
+
+
+    public BoardDaoImpl(SqlSession session){
+        this.session = session;
+    }
 
     public int count() throws Exception {
         return session.selectOne(namespace+"count");

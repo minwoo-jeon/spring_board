@@ -15,8 +15,11 @@ import java.util.Date;
 
 @Repository
 public class UserDaoImpl implements UserDao {
-    @Autowired
-    DataSource ds;
+    private final DataSource ds;
+
+    public UserDaoImpl(DataSource ds){
+        this.ds = ds;
+    }
 
     @Override
     public int deleteUser(String id) throws Exception {

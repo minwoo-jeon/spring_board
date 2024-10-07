@@ -164,7 +164,7 @@
 
 <script>
 
-    let bno = ${boardDto.bno};
+    let bno = "${boardDto.bno}";
 
     let showList =function (bno){
         $.ajax({
@@ -241,7 +241,7 @@
         });
 
         $("#listBtn").on("click", function(){
-            location.href="<c:url value='/board/list?page=${page}&pageSize=${pageSize}'/>";
+            location.href="<c:url value='/board/list?page=${sc.page}&pageSize=${sc.pageSize}'/>";
         });
 
 

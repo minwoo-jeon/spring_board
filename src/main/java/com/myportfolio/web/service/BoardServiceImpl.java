@@ -9,8 +9,11 @@ import java.util.*;
 
 @Service
 public class BoardServiceImpl implements BoardService {
-    @Autowired
-    BoardDao boardDao;
+   private final BoardDao boardDao;
+
+   public BoardServiceImpl(BoardDao boardDao){
+       this.boardDao = boardDao;
+   }
 
     @Override
     public int getCount() throws Exception {

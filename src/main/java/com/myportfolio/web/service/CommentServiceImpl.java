@@ -12,16 +12,17 @@ import java.util.*;
 
 @Service
 public class CommentServiceImpl implements CommentService {
-    @Autowired
-    BoardDao boardDao;
-    @Autowired
-    CommentDao commentDao;
 
-//    @Autowired
-//    public CommentServiceImpl(CommentDao commentDao, BoardDao boardDao) {
-//        this.commentDao = commentDao;
-//        this.boardDao = boardDao;
-//    }
+   private final  BoardDao boardDao;
+   private final CommentDao commentDao;
+
+
+
+    @Autowired
+    public CommentServiceImpl(CommentDao commentDao, BoardDao boardDao) {
+        this.commentDao = commentDao;
+        this.boardDao = boardDao;
+    }
 
     @Override
     public int getCount(Integer bno) throws Exception {

@@ -14,8 +14,12 @@ import java.util.List;
 
 @RestController
 public class CommentController {
-    @Autowired
-    CommentService service;
+
+    private  final CommentService commentService;
+
+    public CommentController(CommentService commentService){
+        this.commentService = commentService;
+    }
 
     //댓글을 수정하는 메서드
     @PatchMapping("/comments/{cno}")  // web/comments/70 patch
@@ -27,7 +31,7 @@ public class CommentController {
         System.out.println("dto =" + dto );
 
         try {
-            if( service.modify(dto) !=1)
+            if( commentService.modify(dto) !=1)
                 throw new Exception("Modify failed");
 
             return new ResponseEntity<>("MOD_OK", HttpStatus.OK);
@@ -57,7 +61,7 @@ public class CommentController {
         System.out.println("dto = " + dto);
 
         try {
-            if( service.write(dto) !=1)
+            if( commentService.write(dto) !=1)
                 throw new Exception("Write failed");
 
             return new ResponseEntity<>("WRT_OK", HttpStatus.OK);
@@ -77,7 +81,7 @@ public class CommentController {
         String commenter = "asdf";
 
         try {
-            int rowCnt = service.remove(cno, bno, commenter);
+            int rowCnt = commentService.remove(cno, bno, commenter);
 
             if(rowCnt!=1)
                 throw  new Exception("Delete Failed");
@@ -96,7 +100,7 @@ public class CommentController {
     public ResponseEntity<List<CommentDto>> list(Integer bno) {
         List<CommentDto> list = null;
         try {
-            list = service.getList(bno);
+            list = commentService.getList(bno);
             return new ResponseEntity<List<CommentDto>>(list, HttpStatus.OK); //성공시  200
         } catch (Exception e){
             e.printStackTrace();

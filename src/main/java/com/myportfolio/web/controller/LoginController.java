@@ -20,8 +20,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/login")
 public class LoginController {
-    @Autowired
-    UserDao userDao;
+
+    private final UserDao userDao;
+
+    public LoginController(UserDao userDao){
+        this.userDao = userDao;
+    }
 
     @GetMapping("/login")
     public String loginForm() {

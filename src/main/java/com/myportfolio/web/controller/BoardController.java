@@ -16,19 +16,22 @@ import java.util.*;
 @Controller
 @RequestMapping("/board")
 public class BoardController {
-    @Autowired
-    BoardService boardService;
+
+    private final BoardService boardService;
+
+    public BoardController(BoardService boardService){
+        this.boardService = boardService;
+    }
 
 
     //게시물 읽기
     @GetMapping("/read")
-    public String read(Integer bno, Model m, Integer page, Integer pageSize ){
+    public String read(Integer bno, Model m, SearchCondition sc ){
 
         try {
             BoardDto boardDto = boardService.read(bno);
             m.addAttribute("boardDto", boardDto);
-            m.addAttribute("page",page);
-            m.addAttribute("pageSize",pageSize);
+            m.addAttribute("sc",sc);
 
 
         } catch (Exception e) {
@@ -93,8 +96,9 @@ public class BoardController {
 
     //게시물 작성 페이지 가져오기
     @GetMapping("/write")
-    public String write(Model m){
+    public String write(Model m, SearchCondition sc ){
         m.addAttribute("mode" , "new");
+        m.addAttribute("sc",sc);
         return "board";
     }
 
